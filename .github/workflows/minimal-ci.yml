@@ -35,34 +35,34 @@ defaults:
 #  cancel-in-progress: true
 
 jobs:
-#  rustfmt:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v3
-#      - name: "Install Rust"
-#        uses: ./.github/composite/rust
-#        with:
-#          rust: stable
-#          components: rustfmt
-#      - name: "Check rustfmt"
-#        run: cargo fmt --all -- --check
+  rustfmt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: "Install Rust"
+        uses: ./.github/composite/rust
+        with:
+          rust: stable
+          components: rustfmt
+      - name: "Check rustfmt"
+        run: cargo fmt --all -- --check
 
-#  unit-test:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v3
-#      - name: "Install Rust"
-#        uses: ./.github/composite/rust
-#
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: "Install Rust"
+        uses: ./.github/composite/rust
+
 #      # TODO seems unneeded in GDNative...?
 #      - name: "Install LLVM"
 #        uses: ./.github/composite/llvm
 #
-#      - name: "Compile tests"
-#        run: cargo test --workspace --features ${GDEXT_FEATURES} --no-run
-#
-#      - name: "Test"
-#        run: cargo test --workspace --features ${GDEXT_FEATURES}
+      - name: "Compile tests"
+        run: cargo test --workspace --features ${GDEXT_FEATURES} --no-run
+
+      - name: "Test"
+        run: cargo test --workspace --features ${GDEXT_FEATURES}
 
   integration-test-godot:
     name: itest-godot-${{ matrix.name }}
